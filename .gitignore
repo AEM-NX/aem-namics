@@ -1,9 +1,40 @@
+# git svn show-ignore
+#
+# Patterns in alphabetical order (ignoring special characters):
+
+bin
+*.class
+.classpath
+.pmd
 target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
+*.swp
+*.backup
+*.log
+
+# excldue IntelliJ Idea project files
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+*.xml~
+*.bat
+
+# IDE
+_.*
+.buildpath
+.cache
+.config
+.deployables
+.idea
+.metadata
+.project
+.settings
+.tmp*
+*.prefs
+atlassian-ide-plugin.xml
+.checkstyle
+nb-configuration.xml
+
+#exclude dependencycheck folders
+dependencycheck
