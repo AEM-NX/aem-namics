@@ -5,9 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.request.RequestParameter;
+import org.apache.sling.api.resource.Resource;
 
 import javax.annotation.Nonnull;
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,86 +17,104 @@ import java.util.List;
 /**
  * Util class used for request related topics.
  *
- * @author sbaur, Namics AG
+ * @author sbaur
+ * @author mkitanovski
  */
 @Slf4j
 public final class RequestUtil {
 
+    public static final String UTF_8 = "UTF-8";
 
     private RequestUtil() {
     }
 
     /**
+     * @param request
+     * @param name    name of the parameter to look for
+     * @return if the request has a parameter with the given name
+     */
+    public static boolean hasParameter(SlingHttpServletRequest request, String name) {
+        return request.getParameter(name) != null;
+    }
+
+    /**
      * Gets a parameter from the request, return empty string if it does not exist.
      *
-     * @param name    the parameter name
      * @param request the request
+     * @param name    the parameter name
      * @return the request parameter, empty string if parameter does not exist
      */
-    public static String getRequestParameter(
-            final String name,
-            final SlingHttpServletRequest request) {
-        return getRequestParameter(name, StringUtils.EMPTY, request);
+    public static String getStringParameter(final SlingHttpServletRequest request, final String name) {
+        return getStringParameter(request, name, StringUtils.EMPTY);
     }
 
     /**
      * Gets a parameter from the request, return defaultValue if it does not exist.
      *
-     * @param name         the parameter name
      * @param request      the request
+     * @param name         the parameter name
      * @param defaultValue the defaultValue
      * @return the request parameter or defaultValue if parameter does not exist
      */
-    public static String getRequestParameter(final String name,
-                                             final String defaultValue,
-                                             final SlingHttpServletRequest request) {
-
-        if (request.getRequestParameterMap() != null) {
-            final RequestParameter requestParameter = request.getRequestParameterMap().getValue(name);
-            if (requestParameter != null && StringUtils.isNotBlank(requestParameter.toString())) {
-                return requestParameter.toString();
-            }
+    public static String getStringParameter(final SlingHttpServletRequest request, final String name, final String defaultValue) {
+        if (hasParameter(request, name)) {
+            return request.getParameter(name);
+        } else {
+            return defaultValue;
         }
-        return defaultValue;
     }
 
     /**
      * Gets a parameter as integer from the request, return a default value if it does not exist.
      *
-     * @param name         the parameter name
-     * @param request      the request
-     * @param defaultValue the default value
+     * @param request the request
+     * @param name    the parameter name
      * @return the request parameter as integer, default value if parameter does not exist
      */
-    public static int getRequestParameterAsInteger(
-            final String name,
-            final SlingHttpServletRequest request,
-            final int defaultValue) {
-        try {
-            return Integer.parseInt(getRequestParameter(name, request));
-        } catch (final NumberFormatException e) {
-            log.debug("getRequestParameterAsInteger(): unable to parse int from request parameter: {}", name);
-        }
-        return defaultValue;
+    public static int getIntParameter(final SlingHttpServletRequest request, final String name) {
+        return getIntParameter(request, name, 0);
     }
 
     /**
-     * Gets the value after the given selector prefix. Empty String otherwise.
+     * Gets a parameter as integer from the request, return a default value if it does not exist.
      *
-     * @param request {@link SlingHttpServletRequest}
-     * @param prefix  String
-     * @return value after the given selector prefix. Empty String otherwise.
+     * @param request      the request
+     * @param name         the parameter name
+     * @param defaultValue the default value
+     * @return the request parameter as integer, default value if parameter does not exist
      */
-    public static String getSelectorByPrefix(
-            final SlingHttpServletRequest request,
-            final String prefix) {
-        final List<String> selectors = getSelectors(request);
-        for (final String selector : selectors) {
-            if (StringUtils.startsWith(selector, prefix)) {
-                return StringUtils.substringAfter(selector, prefix);
-            }
+    public static int getIntParameter(final SlingHttpServletRequest request, final String name, final int defaultValue) {
+        try {
+            return Integer.parseInt(getStringParameter(request, name, String.valueOf(defaultValue)));
+        } catch (final NumberFormatException e) {
+            return defaultValue;
         }
-        return StringUtils.EMPTY;
+    }
+
+    /**
+     * Gets a parameter as boolean from the request
+     *
+     * @param request the request
+     * @param name    the parameter name
+     * @return the request parameter as integer, false if parameter does not exist
+     */
+    public static boolean getBooleanParameter(final SlingHttpServletRequest request, final String name) {
+        return getBooleanParameter(request, name, false);
+    }
+
+    /**
+     * Gets a parameter as boolean from the request
+     *
+     * @param request      the request
+     * @param name         the parameter name
+     * @param defaultValue the default value
+     * @return the request parameter as integer, default value if parameter does not exist
+     */
+    public static boolean getBooleanParameter(final SlingHttpServletRequest request, final String name, final boolean defaultValue) {
+        if (hasParameter(request, name)) {
+            return Boolean.parseBoolean(getStringParameter(request, name));
+        }
+        return defaultValue;
     }
 
     /**
@@ -104,9 +124,7 @@ public final class RequestUtil {
      * @param searchedSelector String with Selector to search for.
      * @return true, if given parameter is a selector of the request
      */
-    public static boolean hasSelector(
-            final SlingHttpServletRequest request,
-            final String searchedSelector) {
+    public static boolean hasSelector(final SlingHttpServletRequest request, final String searchedSelector) {
         final List<String> selectors = getSelectors(request);
         for (final String givenSelector : selectors) {
             if (StringUtils.equalsIgnoreCase(givenSelector, searchedSelector)) {
@@ -118,27 +136,6 @@ public final class RequestUtil {
 
     public static List<String> getSelectors(final SlingHttpServletRequest request) {
         return new ArrayList<>(Arrays.asList(request.getRequestPathInfo().getSelectors()));
-    }
-
-    /**
-     * Looks for a selector by index.
-     *
-     * @param request      the request to look at
-     * @param defaultValue the value that is returned if no valid selector is found (not selectors, or not enough selectors)
-     * @return the selector with the given index, or defaultValue if not found
-     */
-    public static String getFirstSelector(@Nonnull SlingHttpServletRequest request, String defaultValue) {
-        return getSelector(request, 0, defaultValue);
-    }
-
-    /**
-     * Check if X-SSI-Enabled is set.
-     *
-     * @param request {@link SlingHttpServletRequest}
-     * @return true, if X-SSI-Enabled is true, otherwise false
-     */
-    public static boolean isSSIEnabled(final SlingHttpServletRequest request) {
-        return Boolean.parseBoolean(request.getHeader("X-SSI-Enabled"));
     }
 
     /**
@@ -156,6 +153,17 @@ public final class RequestUtil {
         } else {
             return selectors.get(selectorIndex);
         }
+    }
+
+    /**
+     * Looks for a selector by index.
+     *
+     * @param request      the request to look at
+     * @param defaultValue the value that is returned if no valid selector is found (not selectors, or not enough selectors)
+     * @return the selector with the given index, or defaultValue if not found
+     */
+    public static String getFirstSelector(@Nonnull SlingHttpServletRequest request, String defaultValue) {
+        return getSelector(request, 0, defaultValue);
     }
 
     public static String getBaseUrl(HttpServletRequest request) {
@@ -176,6 +184,85 @@ public final class RequestUtil {
             result = url;
         }
         return result;
+    }
+
+
+    /**
+     * NullSafe way to get a request parameter value. (returns an empty string if parameter is null)
+     *
+     * @param parameterName request parameter name
+     * @param request       the request
+     * @return the value of the given parameter name or an empty string if it does not exits
+     */
+    public static String getNullSafeUtf8ParameterValue(String parameterName, SlingHttpServletRequest request) {
+        if (parameterName == null || request == null) {
+            return StringUtils.EMPTY;
+        }
+
+        final RequestParameter reqParameter = request.getRequestParameter(parameterName);
+        return getNullSafeUtf8ParameterValue(reqParameter);
+    }
+
+    /**
+     * NullSafe way to get a request parameter value. (returns an empty string if parameter is null)
+     *
+     * @param requestParameter the request parameter
+     * @return the value of the given parameter or an empty string if it does not exits
+     */
+    public static String getNullSafeUtf8ParameterValue(RequestParameter requestParameter) {
+        String value = "";
+
+        try {
+            if (requestParameter != null) {
+                value = requestParameter.getString(UTF_8);
+            }
+        } catch (UnsupportedEncodingException ignored) {
+        }
+
+        return value;
+    }
+
+    /**
+     * Returns the resource from the request path.
+     *
+     * @param request {@link SlingHttpServletRequest} request.
+     * @return Resource from the request.
+     */
+    public static Resource getResourceFromRequestPath(final SlingHttpServletRequest request) {
+        final String pathInfo = request.getPathInfo();
+        return request.getResource().getResourceResolver().resolve(pathInfo);
+    }
+
+    /**
+     * Returns true, if the request has the given parameter. False otherwise. Returns false if either parameter is null or parameterName is blank.
+     *
+     * @param parameterName parameter to lookup
+     * @param request       request to check
+     * @return true, if the request has the given parameter. False otherwise.
+     */
+    public static boolean hasParameter(String parameterName, SlingHttpServletRequest request) {
+        if (request == null || StringUtils.isBlank(parameterName)) {
+            return false;
+        }
+        return request.getRequestParameter(parameterName) != null;
+    }
+
+    /**
+     * Returns a selection list of an element.
+     *
+     * @param request     Form request as SlingHttpServletRequest
+     * @param elementName Form element name
+     * @return list of requests
+     */
+    public static List<String> getParameterListFromRequest(final SlingHttpServletRequest request, final String elementName) {
+        final List<String> requestList = new ArrayList<>();
+        final String[] paramValues = request.getParameterValues(elementName);
+        if (null != paramValues && paramValues.length > 0) {
+            for (String value : paramValues) {
+                requestList.add(value);
+            }
+        }
+        return requestList;
     }
 
 }
