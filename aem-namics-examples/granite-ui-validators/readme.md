@@ -1,6 +1,6 @@
 #Granite UI Validators
 
-After deploying the clientlib, use the validator like following example in your dialogs.
+After deploying the clientlib, use the validator like following example in your dialogs:
 
 ```html
 <with jcr:primaryType="nt:unstructured"
