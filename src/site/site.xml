@@ -15,6 +15,7 @@
 
     <custom>
         <reflowSkin>
+            <protocolRelativeURLs>true</protocolRelativeURLs>
             <theme>bootswatch-flatly</theme>
             <highlightJs>true</highlightJs>
             <smoothScroll>true</smoothScroll>

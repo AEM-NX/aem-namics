@@ -24,10 +24,10 @@
     </modules>
 
     <properties>
-        <site.url>http://aem-nx.github.io/aem-namics</site.url>
+        <site.url>http://aem-nx.github.io</site.url>
         <github.global.server>github</github.global.server>
         <site.deploy.id>gh-pages</site.deploy.id>
-        <site.deploy.url />
+        <site.deploy.url>aem-namics</site.deploy.url>
 
         <repositoryName>aem-namics</repositoryName>
         <repositoryOwner>aem-nx</repositoryOwner>
@@ -99,7 +99,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 
@@ -117,7 +116,7 @@
         <site>
             <id>${site.deploy.id}</id>
             <name>Deployment through GitHub's site deployment plugin</name>
-            <url>${site.deploy.url}</url>
+            <url>/</url>
         </site>
     </distributionManagement>
 
