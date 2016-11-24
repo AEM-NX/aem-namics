@@ -14,6 +14,7 @@
         <name>Namics AG</name>
         <url>www.namics.com</url>
     </organization>
+    <url>https://github.com/AEM-NX/aem-namics</url>
 
     <modules>
         <module>aem-namics-commons</module>
@@ -21,6 +22,16 @@
         <module>aem-namics-examples</module>
         <module>aem-namics-integrations</module>
     </modules>
+
+    <properties>
+        <site.url>http://aem-nx.github.io/aem-namics</site.url>
+        <github.global.server>github</github.global.server>
+        <site.deploy.id>gh-pages</site.deploy.id>
+        <site.deploy.url />
+
+        <repositoryName>aem-namics</repositoryName>
+        <repositoryOwner>aem-nx</repositoryOwner>
+    </properties>
 
     <build>
         <plugins>
@@ -52,6 +63,41 @@
                         <version>1.7</version>
                     </dependency>
                 </dependencies>
+                <configuration>
+                    <generateReports>true</generateReports>
+                    <inputEncoding>UTF-8</inputEncoding>
+                    <outputEncoding>UTF-8</outputEncoding>
+                    <!-- Site deployment done using GitHub site plugin -->
+                    <skipDeploy>true</skipDeploy>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <!-- Deploy the web site -->
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.12</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <!-- select the Maven phase in which the plugin will be executed -->
+                        <phase>site-deploy</phase>
+                        <configuration>
+                            <!-- Plugin configuration ges here -->
+
+                            <server>github</server>
+                            <!--commit message-->
+                            <message>Creating site for ${project.artifactId}, ${project.version}</message>
+                            <!-- this does the trick to place every module in the correct subfolder -->
+                            <path>${project.distributionManagement.site.url}</path>
+                            <!-- Use merge or override the content -->
+                            <merge>true</merge>
+
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>
@@ -66,5 +112,13 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <distributionManagement>
+        <site>
+            <id>${site.deploy.id}</id>
+            <name>Deployment through GitHub's site deployment plugin</name>
+            <url>${site.deploy.url}</url>
+        </site>
+    </distributionManagement>
 
 </project>
