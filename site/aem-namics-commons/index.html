@@ -8,7 +8,7 @@
 
 	<head>
 		<meta charset="UTF-8" />
-		<title>Dependency Information | Namics AEM commons</title>
+		<title>About | AEM Namics Commons - Parent</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="" />
 		<meta http-equiv="content-language" content="en" />
@@ -34,7 +34,7 @@
 
 	</head>
 
-	<body class="page-dependency-info project-namics-aem" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
+	<body class="page-index project-aem-namics-commons" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
 
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
@@ -50,16 +50,13 @@
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Main <b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li ><a href="index.html" title="Home">Home</a></li>
+									<li ><a href="../index.html" title="Home">Home</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sub-Modules <b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li ><a href="aem-namics-commons/index.html" title="AEM Namics Commons - Parent">AEM Namics Commons - Parent</a></li>
-									<li ><a href="aem-namics-tools/index.html" title="Namics AEM - Tools">Namics AEM - Tools</a></li>
-									<li ><a href="aem-namics-examples/index.html" title="Namics AEM - Examples">Namics AEM - Examples</a></li>
-									<li ><a href="aem-namics-integrations/index.html" title="Namics AEM - Integrations">Namics AEM - Integrations</a></li>
+									<li ><a href="aem-namics-commons-wcm/index.html" title="AEM Namics Commons - WCM">AEM Namics Commons - WCM</a></li>
 								</ul>
 							</li>
 							<li class="dropdown active">
@@ -68,10 +65,12 @@
 									<li class="dropdown-submenu ">
 										<a href="project-info.html" title="Project Information">Project Information</a>
 										<ul class="dropdown-menu">
+											<li ><a href="dependencies.html" title="Dependencies">Dependencies</a></li>
 											<li ><a href="dependency-convergence.html" title="Dependency Convergence">Dependency Convergence</a></li>
-											<li class="active"><a href="" title="Dependency Information">Dependency Information</a></li>
+											<li ><a href="dependency-info.html" title="Dependency Information">Dependency Information</a></li>
+											<li ><a href="dependency-management.html" title="Dependency Management">Dependency Management</a></li>
 											<li ><a href="distribution-management.html" title="Distribution Management">Distribution Management</a></li>
-											<li ><a href="index.html" title="About">About</a></li>
+											<li class="active"><a href="" title="About">About</a></li>
 											<li ><a href="modules.html" title="Project Modules">Project Modules</a></li>
 											<li ><a href="plugin-management.html" title="Plugin Management">Plugin Management</a></li>
 											<li ><a href="plugins.html" title="Plugins">Plugins</a></li>
@@ -100,66 +99,28 @@
 			<div class="body-content">
 <div class="section"> 
  <div class="page-header">
-  <h2 id="Dependency_Information">Dependency Information</h2>
+  <h2 id="About_AEM_Namics_Commons_-_Parent">About AEM Namics Commons - Parent</h2>
  </div> 
- <a name="Dependency_Information"></a> 
+ <a name="About_AEM_Namics_Commons_-_Parent"></a> 
+ <p>Parent POM for AEM Common Utilities</p> 
  <div class="section"> 
-  <h3 id="Apache_Maven">Apache Maven</h3> 
-  <a name="Apache_Maven"></a> 
-  <div class="source"> 
-   <pre>&lt;dependency&gt;
-  &lt;groupId&gt;com.namics.aem&lt;/groupId&gt;
-  &lt;artifactId&gt;namics-aem&lt;/artifactId&gt;
-  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
-  &lt;type&gt;pom&lt;/type&gt;
-&lt;/dependency&gt;</pre> 
-  </div> 
- </div> 
- <div class="section"> 
-  <h3 id="Apache_Buildr">Apache Buildr</h3> 
-  <a name="Apache_Buildr"></a> 
-  <div class="source"> 
-   <pre>'com.namics.aem:namics-aem:pom:1.0-SNAPSHOT'</pre> 
-  </div> 
- </div> 
- <div class="section"> 
-  <h3 id="Apache_Ivy">Apache Ivy</h3> 
-  <a name="Apache_Ivy"></a> 
-  <div class="source"> 
-   <pre>&lt;dependency org=&quot;com.namics.aem&quot; name=&quot;namics-aem&quot; rev=&quot;1.0-SNAPSHOT&quot;&gt;
-  &lt;artifact name=&quot;namics-aem&quot; type=&quot;pom&quot; /&gt;
-&lt;/dependency&gt;</pre> 
-  </div> 
- </div> 
- <div class="section"> 
-  <h3 id="Groovy_Grape">Groovy Grape</h3> 
-  <a name="Groovy_Grape"></a> 
-  <div class="source"> 
-   <pre>@Grapes(
-@Grab(group='com.namics.aem', module='namics-aem', version='1.0-SNAPSHOT')
-)</pre> 
-  </div> 
- </div> 
- <div class="section"> 
-  <h3 id="GradleGrails">Gradle/Grails</h3> 
-  <a name="GradleGrails"></a> 
-  <div class="source"> 
-   <pre>compile 'com.namics.aem:namics-aem:1.0-SNAPSHOT'</pre> 
-  </div> 
- </div> 
- <div class="section"> 
-  <h3 id="Scala_SBT">Scala SBT</h3> 
-  <a name="Scala_SBT"></a> 
-  <div class="source"> 
-   <pre>libraryDependencies += &quot;com.namics.aem&quot; % &quot;namics-aem&quot; % &quot;1.0-SNAPSHOT&quot;</pre> 
-  </div> 
- </div> 
- <div class="section"> 
-  <h3 id="Leiningen">Leiningen</h3> 
-  <a name="Leiningen"></a> 
-  <div class="source"> 
-   <pre>[com.namics.aem/namics-aem &quot;1.0-SNAPSHOT&quot;]</pre> 
-  </div> 
+  <h3 id="Project_Modules">Project Modules</h3> 
+  <a name="Project_Modules"></a> 
+  <p>This project has declared the following modules:</p> 
+  <table border="0" class="bodyTable table table-striped table-hover"> 
+   <thead> 
+    <tr class="a"> 
+     <th>Name</th> 
+     <th>Description</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr class="b"> 
+     <td><a href="aem-namics-commons-wcm/index.html">AEM Namics Commons - WCM</a></td> 
+     <td>Bundle with Common WCM Utilities</td> 
+    </tr> 
+   </tbody> 
+  </table> 
  </div> 
 </div>
 			</div>
@@ -178,20 +139,11 @@
 					<ul class="nav nav-list">
 						<li class="nav-header">Main</li>
 						<li >
-							<a href="index.html" title="Home">Home</a>
+							<a href="../index.html" title="Home">Home</a>
 						</li>
 						<li class="nav-header">Sub-Modules</li>
 						<li >
-							<a href="aem-namics-commons/index.html" title="AEM Namics Commons - Parent">AEM Namics Commons - Parent</a>
-						</li>
-						<li >
-							<a href="aem-namics-tools/index.html" title="Namics AEM - Tools">Namics AEM - Tools</a>
-						</li>
-						<li >
-							<a href="aem-namics-examples/index.html" title="Namics AEM - Examples">Namics AEM - Examples</a>
-						</li>
-						<li >
-							<a href="aem-namics-integrations/index.html" title="Namics AEM - Integrations">Namics AEM - Integrations</a>
+							<a href="aem-namics-commons-wcm/index.html" title="AEM Namics Commons - WCM">AEM Namics Commons - WCM</a>
 						</li>
 					</ul>
 				</div>
@@ -202,16 +154,22 @@
 							<a href="project-info.html" title="Project Information">Project Information <i class="icon-chevron-down"></i></a>
 							<ul class="nav nav-list">
 						<li >
+							<a href="dependencies.html" title="Dependencies">Dependencies</a>
+						</li>
+						<li >
 							<a href="dependency-convergence.html" title="Dependency Convergence">Dependency Convergence</a>
 						</li>
-						<li class="active">
-							<a href="#" title="Dependency Information">Dependency Information</a>
+						<li >
+							<a href="dependency-info.html" title="Dependency Information">Dependency Information</a>
+						</li>
+						<li >
+							<a href="dependency-management.html" title="Dependency Management">Dependency Management</a>
 						</li>
 						<li >
 							<a href="distribution-management.html" title="Distribution Management">Distribution Management</a>
 						</li>
-						<li >
-							<a href="index.html" title="About">About</a>
+						<li class="active">
+							<a href="#" title="About">About</a>
 						</li>
 						<li >
 							<a href="modules.html" title="Project Modules">Project Modules</a>
@@ -241,7 +199,7 @@
 			<div class="span12">
 				<p class="pull-right"><a href="#">Back to top</a></p>
 				<p class="copyright">Copyright &copy;2016 <a href="www.namics.com">Namics AG</a>. All Rights Reserved.</p>
-				<p class="version-date"><span class="projectVersion">Version: 1.0-SNAPSHOT. </span><span class="publishDate">Last Published: 24-11-2016. </span></p>
+				<p class="version-date"><span class="projectVersion">Version: 6.1.0-SNAPSHOT. </span><span class="publishDate">Last Published: 24-11-2016. </span></p>
 				<p><a href="http://github.com/andriusvelykis/reflow-maven-skin" title="Reflow Maven skin">Reflow Maven skin</a> by <a href="http://andrius.velykis.lt" target="_blank" title="Andrius Velykis">Andrius Velykis</a>.</p>
 			</div>
 		</div>
