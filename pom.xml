@@ -25,13 +25,18 @@
     </modules>
 
     <properties>
+        <!-- Versions for java compiler and encodings -->
         <java.compiler.source>1.8</java.compiler.source>
         <java.compiler.target>1.8</java.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+
+        <!-- Enforced maven version minimum -->
         <maven.enforce.requireMavenVersion>[3.1.1,)</maven.enforce.requireMavenVersion>
 
+
+        <!-- Settings for site generation any github deployment -->
         <github.global.server>github</github.global.server>
         <site.url>http://aem-nx.github.io/aem-namics</site.url>
         <site.deploy.id>gh-pages</site.deploy.id>
@@ -84,7 +89,7 @@
                                     </requireMavenVersion>
                                     <requireJavaVersion>
                                         <message>Project must be compiled with Java ${java.compiler.source} or higher</message>
-                                        <version>${java.compiler.source}</version>
+                                        <version>${java.compiler.target}</version>
                                     </requireJavaVersion>
                                 </rules>
                             </configuration>
