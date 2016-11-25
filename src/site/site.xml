@@ -21,14 +21,14 @@
             <smoothScroll>true</smoothScroll>
             <brand>
                 <name>Adobe Experience Manager. Opensource. Namics.</name>
-                <href>index.html</href>
+                <href>https://aem-nx.github.io/aem-namics/site/index.html</href>
             </brand>
             <titleTemplate>%2$s | %1$s</titleTemplate>
             <toc>false</toc>
             <topNav>Documentation|Modules</topNav>
             <bottomNav>
-                <column>modules</column>
-                <column>reports</column>
+                <column>Modules</column>
+                <column>Documentation</column>
             </bottomNav>
 
             <bottomDescription>
