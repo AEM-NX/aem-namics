@@ -46,7 +46,6 @@
         <menu ref="modules" name="Modules" inherit="top"/>
         <menu name="Documentation" inherit="top">
             <item name="Dependency Information" href="dependency-info.html" />
-            <item name="Plugin Information" href="plugins.html" />
             <item name="Project Summary" href="project-summary.html" />
             <item name="API Documentation" href="apidocs/index.html" />
         </menu>
