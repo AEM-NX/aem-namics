@@ -166,6 +166,10 @@ public final class RequestUtil {
         return getSelector(request, 0, defaultValue);
     }
 
+    /**
+     * @param request the request to analyze
+     * @return get the base url before the request path
+     */
     public static String getBaseUrl(HttpServletRequest request) {
         String requestURI = request.getRequestURI();
         String requestURL = request.getRequestURL().toString();
@@ -174,6 +178,10 @@ public final class RequestUtil {
         return baseUrl;
     }
 
+    /**
+     * @param request the request to analyze
+     * @return the full request url including the query string
+     */
     public static String getFullRequestUrl(HttpServletRequest request) {
         String url = request.getRequestURL().toString();
         String queryString = request.getQueryString();
@@ -251,12 +259,12 @@ public final class RequestUtil {
      * Returns a selection list of an element.
      *
      * @param request     Form request as SlingHttpServletRequest
-     * @param elementName Form element name
+     * @param name Form element name
      * @return list of requests
      */
-    public static List<String> getParameterListFromRequest(final SlingHttpServletRequest request, final String elementName) {
+    public static List<String> getParameterListFromRequest(final SlingHttpServletRequest request, final String name) {
         final List<String> requestList = new ArrayList<>();
-        final String[] paramValues = request.getParameterValues(elementName);
+        final String[] paramValues = request.getParameterValues(name);
         if (null != paramValues && paramValues.length > 0) {
             for (String value : paramValues) {
                 requestList.add(value);

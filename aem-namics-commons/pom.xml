@@ -79,7 +79,7 @@
                                 </requireMavenVersion>
                                 <requireJavaVersion>
                                     <message>Project must be compiled with Java 8 or higher</message>
-                                    <version>1.8.0</version>
+                                    <version>${maven.compiler.source}</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
@@ -151,7 +151,7 @@
                             <configuration>
                                 <!-- Private service properties for all services. -->
                                 <properties>
-                                    <service.vendor>Adobe</service.vendor>
+                                    <service.vendor>Namics</service.vendor>
                                 </properties>
                             </configuration>
                         </execution>
@@ -190,35 +190,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>2.8.2</version>
-                </plugin>
-                <!-- Apache Sling Plugin -->
-                <plugin>
-                    <groupId>org.apache.sling</groupId>
-                    <artifactId>maven-sling-plugin</artifactId>
-                    <version>2.1.0</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>install</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <slingUrl>http://${aem.host}:${aem.port}/crx/repository/crx.default</slingUrl>
-                        <usePut>true</usePut>
-                        <failOnError>true</failOnError>
-                    </configuration>
-                </plugin>
-                <!-- Content Package Plugin -->
-                <plugin>
-                    <groupId>com.day.jcr.vault</groupId>
-                    <artifactId>content-package-maven-plugin</artifactId>
-                    <version>0.0.24</version>
-                    <configuration>
-                        <targetURL>http://${aem.host}:${aem.port}/crx/packmgr/service.jsp</targetURL>
-                        <failOnError>true</failOnError>
-                        <failOnMissingEmbed>true</failOnMissingEmbed>
-                    </configuration>
                 </plugin>
                 <!-- Apache Felix Bundle Plugin -->
                 <plugin>
@@ -482,7 +453,7 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.8.2</version>
+                <version>4.12</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
