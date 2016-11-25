@@ -35,6 +35,8 @@ _.*
 atlassian-ide-plugin.xml
 .checkstyle
 nb-configuration.xml
+effective-pom.xml
+
 
 #exclude dependencycheck folders
 dependencycheck
