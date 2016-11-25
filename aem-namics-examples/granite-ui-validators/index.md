@@ -1,6 +1,6 @@
 #Granite UI Validators
 
-https://github.com/AEM-NX/aem-namics/tree/master/aem-namics-examples/granite-ui-validator
+https://github.com/AEM-NX/aem-namics/tree/master/aem-namics-examples/granite-ui-validators
 
 After deploying the clientlib, use the validator like following example in your dialogs:
 

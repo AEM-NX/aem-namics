@@ -38,3 +38,4 @@ nb-configuration.xml
 
 #exclude dependencycheck folders
 dependencycheck
+aem-namics-examples/*/src/site/markdown/index.md
