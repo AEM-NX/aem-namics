@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public final class RequestUtil {
     }
 
     /**
-     * @param request
+     * @param request the request
      * @param name    name of the parameter to look for
      * @return if the request has a parameter with the given name
      */
@@ -266,9 +267,7 @@ public final class RequestUtil {
         final List<String> requestList = new ArrayList<>();
         final String[] paramValues = request.getParameterValues(name);
         if (null != paramValues && paramValues.length > 0) {
-            for (String value : paramValues) {
-                requestList.add(value);
-            }
+            Collections.addAll(requestList, paramValues);
         }
         return requestList;
     }
