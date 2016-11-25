@@ -4,7 +4,7 @@ This project is a unified collection of AEM code, tools and examples provided by
 
 ## Installation & Usage
 To learn how to use this project check out 
-[The Documentation](hhttps://aem-nx.github.io/aem-namics/site/index.html "Namics AEM Documentation")
+[The Documentation](https://aem-nx.github.io/aem-namics/site/index.html "Namics AEM Documentation")
 
 ## Contributing
 1. Fork it!
