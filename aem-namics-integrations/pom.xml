@@ -11,6 +11,6 @@
 
     <artifactId>aem-namics-integrations</artifactId>
     <name>Namics AEM - Integrations</name>
-
+    <description>Namics AEM Integrations.</description>
 
 </project>

@@ -11,5 +11,6 @@
 
     <artifactId>aem-namics-examples</artifactId>
     <name>Namics AEM - Examples</name>
+    <description>Namics AEM Examples.</description>
 
 </project>

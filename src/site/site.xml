@@ -16,16 +16,16 @@
     <custom>
         <reflowSkin>
             <protocolRelativeURLs>true</protocolRelativeURLs>
-            <theme>bootswatch-flatly</theme>
+            <theme>bootswatch-united</theme>
             <highlightJs>true</highlightJs>
             <smoothScroll>true</smoothScroll>
             <brand>
-                <name>Namics AEM</name>
+                <name>Adobe Experience Manager. Opensource. Namics.</name>
                 <href>index.html</href>
             </brand>
             <titleTemplate>%2$s | %1$s</titleTemplate>
             <toc>false</toc>
-            <topNav>Main|Maven Documentation|Sub-Modules</topNav>
+            <topNav>Main|Documentation|Modules</topNav>
             <bottomNav>
                 <column>Main|Sub-Modules</column>
                 <column>reports</column>
@@ -46,8 +46,8 @@
         <menu name="Main" inherit="top">
             <item name="Home" href="index.html"/>
         </menu>
-        <menu name="Sub-Modules" ref="modules" inherit="top"/>
-        <menu ref="reports" name="Maven Documentation" inherit="top"/>
+        <menu name="Modules" ref="modules" inherit="top"/>
+        <menu ref="reports" name="Documentation" inherit="top"/>
     </body>
 
 

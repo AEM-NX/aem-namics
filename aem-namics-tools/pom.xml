@@ -11,6 +11,6 @@
 
     <artifactId>aem-namics-tools</artifactId>
     <name>Namics AEM - Tools</name>
-
+    <description>Namics AEM Tools.</description>
 
 </project>
