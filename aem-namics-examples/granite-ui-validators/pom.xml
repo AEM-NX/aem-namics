@@ -16,26 +16,21 @@
     <build>
     <plugins>
 
+
         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-resources-plugin</artifactId>
+            <groupId>com.coderplus.maven.plugins</groupId>
+            <artifactId>copy-rename-maven-plugin</artifactId>
+            <version>1.0</version>
             <executions>
                 <execution>
-                    <id>copy-index</id>
-                    <phase>pre-site</phase>
+                    <id>copy-file</id>
+                    <phase>generate-sources</phase>
                     <goals>
-                        <goal>copy-resources</goal>
+                        <goal>copy</goal>
                     </goals>
                     <configuration>
-                        <outputDirectory>${basedir}/src/site/markdown</outputDirectory>
-                        <resources>
-                            <resource>
-                                <directory>${basedir}</directory>
-                                <includes>
-                                    <include>index.md</include>
-                                </includes>
-                            </resource>
-                        </resources>
+                        <sourceFile>${basedir}/readme.md</sourceFile>
+                        <destinationFile>${basedir}/src/site/markdown/index.md</destinationFile>
                     </configuration>
                 </execution>
             </executions>
