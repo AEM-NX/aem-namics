@@ -15,6 +15,7 @@
         <url>www.namics.com</url>
     </organization>
     <url>https://github.com/AEM-NX/aem-namics</url>
+    <description>This project is a unified collection of AEM code, tools and examples provided by Namics.</description>
 
     <modules>
         <module>aem-namics-commons</module>
