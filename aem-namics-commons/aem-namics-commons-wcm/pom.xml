@@ -26,6 +26,9 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
+                        <Export-Package>
+                            com.namics.aem.commons.wcm.*;version=${project.version},
+                        </Export-Package>
                         <!--
                         <Embed-Dependency>
                             artifactId1,
@@ -33,7 +36,7 @@
                         </Embed-Dependency>
                         -->
                         <Sling-Model-Packages>
-                            com.namics.aem.commons.wcm.core
+                            com.namics.aem.commons.wcm.models
                         </Sling-Model-Packages>
                     </instructions>
                 </configuration>
