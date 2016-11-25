@@ -26,8 +26,8 @@
     <properties>
         <site.url>http://aem-nx.github.io/aem-namics</site.url>
         <github.global.server>github</github.global.server>
-        <site.deploy.id>gh-pages</site.deploy.id>
-        <site.deploy.url>site</site.deploy.url>
+        <site.deploy.id>master</site.deploy.id>
+        <site.deploy.url>doc</site.deploy.url>
 
         <repositoryName>aem-namics</repositoryName>
         <repositoryOwner>aem-nx</repositoryOwner>
